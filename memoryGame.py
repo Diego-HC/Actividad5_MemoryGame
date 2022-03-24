@@ -29,9 +29,12 @@ def square(x, y):
     down()
     color('black', 'white')
     begin_fill()
-    for count in range(4):
-        forward(50)
+    forward(25) #Hacer que el cuadrado se empiece a dibujar desde el centro inferior
+    for count in range(3):
         left(90)
+        forward(50)
+    left(90)
+    forward(25)
     end_fill()
 
 
@@ -42,8 +45,7 @@ def index(x, y):
 
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
-
+    return (count % 8) * 50 - 175, (count // 8) * 50 - 200 #La loseta se traslada 25 a la izquierda
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
@@ -78,11 +80,11 @@ def draw():
         goto(x + 2, y)
         color('black')
         if t == 1 or t == 2:
-            write(tiles[mark], font=('Arial', 30, 'normal'))
+            write(tiles[mark], font=('Arial', 30, 'normal'), align="center") #Texto alineado en el centro
         elif t == 3:
-            write(tiles[mark], font=('Arial', 15, 'normal'))
+            write(tiles[mark], font=('Arial', 15, 'normal'), align="center") #Texto alineado en el centro
         else:
-            write(tiles[mark], font=('Arial', 13, 'normal'))
+            write(tiles[mark], font=('Arial', 13, 'normal'), align="center") #Texto alineado en el centro
 
     update()
     ontimer(draw, 100)
