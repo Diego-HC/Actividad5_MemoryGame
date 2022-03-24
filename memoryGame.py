@@ -60,6 +60,28 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
+    # Desplegar un texto cuando el jugador gane
+    for i in hide:  # Checa la lista que lleva el recuento de las casillas descubiertas
+        if i:
+            break   # Si falta alguna de ser descubierta, sale del loop
+    else:   # Si ya se descubrieron todas
+        up()
+        x, y = xy(66)   #Ir a una posición específica
+        goto(x, y)
+        down()
+        color('black', 'white')
+        begin_fill()
+        for _ in range(2):  # Dibujar un rectángulo sobre la imagen del auto
+            forward(200)
+            right(90)
+            forward(100)
+            right(90)
+        end_fill()
+        up()
+        x, y = xy(52)
+        goto(x, y + 20)
+        write('Ganaste', align='center', font=('Arial', 40, 'normal'))   # Escribir el texto dentro del cuadro
+
     update()
     ontimer(draw, 100)
 
