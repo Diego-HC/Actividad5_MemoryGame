@@ -6,6 +6,11 @@ from freegames import path
 
 car = path('car.gif')
 t = randint(1, 4)
+click = 1
+nclicks = []
+writer = Turtle(visible=False)
+states = {'contador': 0}
+
 if t == 1:
     tiles = list(range(32)) * 2
 elif t == 2:
@@ -47,18 +52,45 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 175, (count // 8) * 50 - 200 #La loseta se traslada 25 a la izquierda
 
+
+    
 def tap(x, y):
+    
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
-
+    
+    
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        
+    if state['mark'] == spot or state['mark'] == None:
+        
+        
+        nclicks.append(click)
+        
+        contador = len(nclicks)
+    
+        
+        print(contador)
+        
+        
+        writer.write(contador)
+        
+       
+        
 
+#def contador(): 
+    
+    
+    #for tap in car:
+        #clic = 1
+        #con = clic
+        #print(con)
 
 def draw():
     """Draw image and tiles."""
